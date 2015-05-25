@@ -4,6 +4,11 @@ import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * 
+ * @author wuxc01
+ *
+ */
 public class JsonHelper {
 
 	private static ObjectMapper objectMapper = new ObjectMapper();
