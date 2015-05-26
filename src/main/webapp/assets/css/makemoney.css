@@ -1,20 +1,4 @@
 
-html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,
-code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,
-form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,
-figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video,
-input[type=radio],input[type=checkbox]
-{
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	background: transparent;
-	list-style-type: none;
-	font-family: "Helvetica Neue", "Hiragino Sans GB", 微软雅黑, 宋体, Geneva, Tahoma, sans-serif;
-	font-size: 14pt;
-}
-
 /** login start */
 .mkm-log-top-box {
 	background-color: #5CB85C;
@@ -37,12 +21,12 @@ input[type=radio],input[type=checkbox]
 
 
 /** answer start */
-.mkm-answer-top-box {
+.mkm-top-box {
 	background-color: #CA4E4E;
 	font-size: 14pt;
 	color: #FFFFFF;
 	text-align: center;
-	padding: 50px 20px 20px 20px;
+	padding: 10px 0px;
 	line-height: 2;
 	margin-bottom: 30px;
 }
@@ -98,9 +82,32 @@ input[type=radio],input[type=checkbox]
 /** answer end */
 
 
+.input-tip {
+  display: block;
+  width: 100%;
+  height: 38px;
+  padding: 7px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #222;
+  background-color: #ffffff;
+  background-image: none;
+  border-top: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+  border-left: 1px solid #e7e7e7;
+  border-right: 0px solid #e7e7e7;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.075);
+}
 
-
-
-
-
+.mkm-tab-box {
+  background-color: #ffffff;
+  width: 100%;
+  margin: 20px 0px;
+  padding: 10px 0px 0px 0px;
+}
 
