@@ -9,7 +9,7 @@ public class WeiXinException extends Exception {
 	
 	/** 请求参数异常类型 */
 	public static final String ILLEGAL_PATTERN = "1000";
-
+	
 	private String code = null;
 
 	public WeiXinException() {

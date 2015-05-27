@@ -25,13 +25,24 @@ import com.weixin.util.SignUtil;
  * @author wuxincheng
  */
 @Controller
-@RequestMapping("/weixin")
+@RequestMapping("/weixin/notice")
 public class WeixinController {
 	private static Logger logger = LoggerFactory.getLogger(WeixinController.class);
+	
+	/**
+	 * POST请求
+	 */
+	@RequestMapping(method = RequestMethod.POST)
+	public void post(HttpServletRequest request, HttpServletResponse response, Model model) {
+		
+	}
 
-	@RequestMapping(value = "/notice", method = RequestMethod.GET)
-	public void notice(HttpServletRequest request, HttpServletResponse response, Model model) {
-		logger.info("接收微信公众平台请求");
+	/**
+	 * GET请求: 接入微信公众平台
+	 */
+	@RequestMapping(method = RequestMethod.GET)
+	public void get(HttpServletRequest request, HttpServletResponse response, Model model) {
+		logger.info("接收微信公众平台GET接入请求");
 		
 		String respCode = null;
 		String respMsg = null;
@@ -73,8 +84,10 @@ public class WeixinController {
 				throw new WeiXinException(WeiXinException.ILLEGAL_PATTERN, "随机字符串 echostr 为空");
 			}
 			
+			// 原样返回echostr参数内容
 			if (SignUtil.checkSignature(signature, timestamp, nonce)) {
 				logger.info("微信公众平台接入成功");
+				printResponse(response, echostr);
 			} else {
 				logger.error("微信公众平台接入失败");
 			}
@@ -82,17 +95,42 @@ public class WeixinController {
 			respCode = e.getCode();
 			respMsg = e.getMessage();
 			logger.error("处理微信请求数据异常", e);
+			
+			Map<String, String> responseData = new HashMap<String, String>();
+			responseData.put("respCode", respCode);
+			responseData.put("respMsg", respMsg);
+			
+			printResponse(response, responseData);
 		} catch (Exception ex) {
 			respCode = WeiXinException.SYSTEM_ERROR;
 			respMsg = "系统异常";
 			logger.error("系统异常", ex);
-		} finally {
+			
 			Map<String, String> responseData = new HashMap<String, String>();
 			responseData.put("respCode", respCode);
 			responseData.put("respMsg", respMsg);
 			
 			printResponse(response, responseData);
 		}
+	}
+	
+	/**
+	 * 输出响应报文
+	 * 
+	 * @param response
+	 * @param rspCode
+	 * @param rspMsg
+	 */
+	private void printResponse(HttpServletResponse response, String responseStr) {
+		logger.info("返回微信公众平台应答报文 responseStr=\n{}", responseStr);
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			logger.error("网络通讯异常，返回微信公众平台报文失败");
+		}
+        out.print(responseStr);
 	}
 	
 	/**
