@@ -1,4 +1,4 @@
-package com.weixin.exception;
+package com.makemoney.wechat.exception;
 
 public class WeiXinException extends Exception {
 

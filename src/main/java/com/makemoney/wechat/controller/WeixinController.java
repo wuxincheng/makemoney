@@ -1,4 +1,4 @@
-package com.weixin.controller;
+package com.makemoney.wechat.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,8 +16,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.weixin.exception.WeiXinException;
-import com.weixin.util.SignUtil;
+import com.makemoney.wechat.exception.WeiXinException;
+import com.makemoney.wechat.util.SignUtil;
 
 /**
  * 接入微信公众号平台

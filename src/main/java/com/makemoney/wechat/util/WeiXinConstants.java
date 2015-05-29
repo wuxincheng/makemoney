@@ -1,4 +1,4 @@
-package com.weixin.util;
+package com.makemoney.wechat.util;
 
 public class WeiXinConstants {
 

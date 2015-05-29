@@ -1,4 +1,4 @@
-package com.weixin.util;
+package com.makemoney.wechat.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
