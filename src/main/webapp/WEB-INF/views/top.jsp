@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/makemoney.css" type="text/css"></link>
 </head>
 <style type="text/css">
+body{
+  margin-bottom: 30px;
+}
 </style>
 <body>
   <div class="mkm-top-box">

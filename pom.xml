@@ -112,14 +112,27 @@
     <dependency>
       <groupId>org.jsoup</groupId>
       <artifactId>jsoup</artifactId>
-      <version>1.7.1</version>
+      <version>1.7.2</version>
     </dependency>
 
     <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-      <version>20140107</version>
+      <groupId>net.sf.json-lib</groupId>
+      <artifactId>json-lib</artifactId>
+      <version>2.2.3</version>
     </dependency>
+
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+      <version>1.1.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>net.sf.ezmorph</groupId>
+      <artifactId>ezmorph</artifactId>
+      <version>1.0.4</version>
+    </dependency>
+
 
     <dependency>
       <groupId>org.htmlparser</groupId>
@@ -183,13 +196,20 @@
       <version>2.1</version>
     </dependency>
 
-	<!-- 
     <dependency>
-      <groupId>commons-vfs</groupId>
-      <artifactId>commons-vfs</artifactId>
-      <version>1.0</version>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+      <version>1.9.2</version>
     </dependency>
-	 -->
+
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+
+    <!-- <dependency> <groupId>commons-vfs</groupId> <artifactId>commons-vfs</artifactId> 
+      <version>1.0</version> </dependency> -->
 
     <dependency>
       <groupId>commons-pool</groupId>
@@ -221,13 +241,8 @@
       <version>1.1.6</version>
     </dependency>
 
-    <!-- 
-    <dependency> 
-      <groupId>com.oracle</groupId> 
-      <artifactId>ojdbc14</artifactId> 
-      <version>10.2.0.4.0</version> 
-    </dependency>
-     -->
+    <!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc14</artifactId> 
+      <version>10.2.0.4.0</version> </dependency> -->
 
     <dependency>
       <groupId>org.apache.ibatis</groupId>
@@ -242,13 +257,8 @@
     </dependency>
 
     <!-- WEB javax -->
-    <!-- 
-    <dependency>
-      <groupId>org.glassfish</groupId>
-      <artifactId>javax.faces</artifactId>
-      <version>2.2.4</version>
-    </dependency>
-     -->
+    <!-- <dependency> <groupId>org.glassfish</groupId> <artifactId>javax.faces</artifactId> 
+      <version>2.2.4</version> </dependency> -->
 
     <dependency>
       <groupId>org.glassfish</groupId>
@@ -262,14 +272,14 @@
       <version>3.2-b06</version>
       <scope>provided</scope>
     </dependency>
-    
+
     <dependency>
       <groupId>org.glassfish</groupId>
       <artifactId>javax.persistence</artifactId>
       <version>3.0-b29</version>
       <scope>provided</scope>
     </dependency>
-    
+
     <!-- JSTL -->
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -277,7 +287,7 @@
       <version>1.2</version>
       <scope>runtime</scope>
     </dependency>
-    
+
     <dependency>
       <groupId>org.glassfish</groupId>
       <artifactId>javax.servlet.jsp.jstl</artifactId>
@@ -291,28 +301,13 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- 
-    <dependency>
-      <groupId>org.apache.zookeeper</groupId>
-      <artifactId>zookeeper</artifactId>
-      <version>3.3.5</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.github.sgroschupf</groupId>
-      <artifactId>zkclient</artifactId>
-      <version>0.1</version>
-    </dependency>
-     -->
+    <!-- <dependency> <groupId>org.apache.zookeeper</groupId> <artifactId>zookeeper</artifactId> 
+      <version>3.3.5</version> </dependency> <dependency> <groupId>com.github.sgroschupf</groupId> 
+      <artifactId>zkclient</artifactId> <version>0.1</version> </dependency> -->
 
     <!-- guava(瓜娃)简化集合工作 -->
-    <!-- 
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <version>14.0.1</version>
-    </dependency>
-     -->
+    <!-- <dependency> <groupId>com.google.guava</groupId> <artifactId>guava</artifactId> 
+      <version>14.0.1</version> </dependency> -->
   </dependencies>
 
   <build>

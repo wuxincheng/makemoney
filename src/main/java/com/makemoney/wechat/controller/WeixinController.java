@@ -33,7 +33,7 @@ public class WeixinController {
 	 * POST请求
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public void post(HttpServletRequest request, HttpServletResponse response, Model model) {
+	public void post(HttpServletRequest request, HttpServletResponse response) {
 		
 	}
 

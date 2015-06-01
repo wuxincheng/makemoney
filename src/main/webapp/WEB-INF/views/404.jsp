@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>页面不存在哦 - 咖啡日报</title>
+<title>页面不存在哦 - 赚了没</title>
 <meta charset="utf-8">
 <!-- 
 <link href="<%=request.getContextPath()%>/assets/images/favicon.png" type="image/x-icon" rel="shortcut icon"/>
@@ -15,10 +15,10 @@
 			margin: 150px auto auto auto;
 		}
 		.panel-body {
-			padding: 10px;
+			padding: 20px;
 		}
 		.container {
-			max-width: 553px;
+			max-width: 300px;
 		}
 		.panel-body .btn:not(.btn-block) { width:120px;margin-bottom:10px; }
 	</style>
@@ -26,24 +26,13 @@
 	<div class="container">
 	    <div class="row">
 	        <div>
-	            <div class="panel panel-warning">
+	            <div class="panel panel-danger">
 	                <div class="panel-heading">
-	                    <h3 class="panel-title">咖啡日报 - 萃取行业热点，提炼每日精华！</h3>
+	                    <h3 class="panel-title">404错误提示：</h3>
 	                </div>
-	                
 	                <div class="panel-body">
-	                    <div class="row">
-	                        <div class="col-md-4">
-	                        	<img alt="" src="<%=request.getContextPath()%>/assets/images/sorry.jpg" width="100px" height="160px">
-	                        </div>
-	                        <div class="col-md-8">
-                                <p>&nbsp;</p>
-	                        	<h4><strong>404错误提示：</strong></h4>
-	                        	<h4>您访问的页面不存在哦！</h4>
-                                <p>&nbsp;</p>
-	                        	<h5>TIP：请您不要进行非正常操作呦！</h5>
-	                        </div>
-	                    </div>
+                      	<h4 class="text-danger">您访问的页面不存在哦！</h4>
+                      	<h5 class="text-info">TIP：请您不要进行非正常操作呦！</h5>
 	                </div>
 	            </div>
 	        </div>
