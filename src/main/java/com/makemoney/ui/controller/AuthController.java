@@ -14,17 +14,21 @@ import com.makemoney.ui.util.Constants;
  * 赚了没
  */
 @Controller
-@RequestMapping("/index")
-public class IndexController {
-	private static Logger logger = LoggerFactory.getLogger(IndexController.class);
+@RequestMapping("/auth")
+public class AuthController {
+	private static Logger logger = LoggerFactory.getLogger(AuthController.class);
 	
 	private static final String WEB_NAME = Constants.WEB_NAME;
 
 	@RequestMapping(value = "/")
 	public String list(HttpServletRequest request, Model model) {
-		logger.info(WEB_NAME + "显示首页");
+		logger.info(WEB_NAME + "显示登录授权页面");
 		
-		return "index";
+		String authUrl = null;
+		
+		model.addAttribute("authUrl", authUrl);
+		
+		return "auth";
 	}
 	
 }
