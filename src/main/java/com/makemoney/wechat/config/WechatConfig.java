@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * 微信配置信息读取
- *
+ * 
  * @author wuxincheng
  * @date 2015年6月2日 下午10:54:16
  * @version V1.0
@@ -15,27 +15,33 @@ public class WechatConfig {
 
 	@Value("#{wechatConfigSettings.appID}")
 	private String appID;
-	
+
 	@Value("#{wechatConfigSettings.appSecret}")
 	private String appSecret;
-	
+
 	@Value("#{wechatConfigSettings.token}")
 	private String token;
-	
+
 	@Value("#{wechatConfigSettings.encodingAESKey}")
 	private String encodingAESKey;
-	
+
 	@Value("#{wechatConfigSettings.accessToken}")
 	private String accessToken;
-	
+
 	@Value("#{wechatConfigSettings.accessTokenUrl}")
 	private String accessTokenUrl;
-	
+
 	@Value("#{wechatConfigSettings.userInfoUrl}")
 	private String userInfoUrl;
-	
+
 	@Value("#{wechatConfigSettings.authApiUrl}")
 	private String authApiUrl;
+
+	@Value("#{wechatConfigSettings.redirectUri}")
+	private String redirectUri;
+	
+	@Value("#{wechatConfigSettings.redirectUri}")
+	private String accessTokenByCodeUrl;
 
 	public String getAppID() {
 		return appID;
@@ -100,5 +106,21 @@ public class WechatConfig {
 	public void setAuthApiUrl(String authApiUrl) {
 		this.authApiUrl = authApiUrl;
 	}
-	
+
+	public String getRedirectUri() {
+		return redirectUri;
+	}
+
+	public void setRedirectUri(String redirectUri) {
+		this.redirectUri = redirectUri;
+	}
+
+	public String getAccessTokenByCodeUrl() {
+		return accessTokenByCodeUrl;
+	}
+
+	public void setAccessTokenByCodeUrl(String accessTokenByCodeUrl) {
+		this.accessTokenByCodeUrl = accessTokenByCodeUrl;
+	}
+
 }

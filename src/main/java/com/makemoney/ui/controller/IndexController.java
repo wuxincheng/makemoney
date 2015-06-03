@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.makemoney.ui.util.Constants;
+import com.makemoney.util.Constants;
 
 /**
  * 赚了没

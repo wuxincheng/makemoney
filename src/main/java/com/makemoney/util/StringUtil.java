@@ -1,4 +1,4 @@
-package com.makemoney.ui.util;
+package com.makemoney.util;
 
 import java.util.ArrayList;
 import java.util.Comparator;

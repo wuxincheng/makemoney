@@ -78,11 +78,8 @@ public class WeixinController {
 			// 随机字符串
 			String echostr = request.getParameter("echostr");
 			logger.info("随机字符串 echostr={}", echostr);
-	
-			if (StringUtils.isEmpty(echostr)) {
-				logger.warn("随机字符串 echostr= 为空");
-				throw new WeiXinException(WeiXinException.ILLEGAL_PATTERN, "随机字符串 echostr 为空");
-			}
+			
+			// 不校验echostr
 			
 			// 原样返回echostr参数内容
 			if (SignUtil.checkSignature(signature, timestamp, nonce)) {

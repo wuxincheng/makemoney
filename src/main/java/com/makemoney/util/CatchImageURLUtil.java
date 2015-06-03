@@ -1,4 +1,4 @@
-package com.makemoney.ui.util;
+package com.makemoney.util;
 
 import java.io.File;
 import java.io.FileOutputStream;

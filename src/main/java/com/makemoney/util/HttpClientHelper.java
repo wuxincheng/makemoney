@@ -1,4 +1,4 @@
-package com.makemoney.ui.util;
+package com.makemoney.util;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -37,7 +37,7 @@ public class HttpClientHelper {
 		BufferedInputStream in = null;
 		OutputStream out = null;
 		HttpURLConnection connection = null;
-		String requestStr = JsonHelper.generate(data);
+		String requestStr = JSONHelper.generate(data);
 		try {
 			URL realUrl = new URL(url);
 			connection = (HttpURLConnection)realUrl.openConnection();

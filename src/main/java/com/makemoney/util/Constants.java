@@ -1,4 +1,4 @@
-package com.makemoney.ui.util;
+package com.makemoney.util;
 
 /**
  * 博客系统常量

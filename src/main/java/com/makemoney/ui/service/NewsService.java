@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.makemoney.ui.dao.CommentDao;
 import com.makemoney.ui.dao.NewsDao;
 import com.makemoney.ui.model.News;
-import com.makemoney.ui.util.Constants;
+import com.makemoney.util.Constants;
 
 /**
  * 帖子Service

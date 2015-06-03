@@ -1,4 +1,4 @@
-package com.makemoney.ui.util;
+package com.makemoney.util;
 
 import java.security.GeneralSecurityException;
 import java.security.MessageDigest;

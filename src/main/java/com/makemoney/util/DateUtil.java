@@ -1,4 +1,4 @@
-package com.makemoney.ui.util;
+package com.makemoney.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
