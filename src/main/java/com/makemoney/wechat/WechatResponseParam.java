@@ -77,4 +77,6 @@ public class WechatResponseParam {
 	/** 事件类型 */
 	public static String EVENT = "Event";
 	
+	public static String TICKET = "ticket";
+	
 }

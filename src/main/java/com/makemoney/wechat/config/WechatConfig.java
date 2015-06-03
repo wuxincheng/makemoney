@@ -36,9 +36,12 @@ public class WechatConfig {
 
 	@Value("#{wechatConfigSettings.redirectUri}")
 	private String redirectUri;
-	
+
 	@Value("#{wechatConfigSettings.redirectUri}")
 	private String accessTokenByCodeUrl;
+
+	@Value("#{wechatConfigSettings.jsapiTicketUrl}")
+	private String jsapiTicketUrl;
 
 	public String getAppID() {
 		return appID;
@@ -110,6 +113,14 @@ public class WechatConfig {
 
 	public void setAccessTokenByCodeUrl(String accessTokenByCodeUrl) {
 		this.accessTokenByCodeUrl = accessTokenByCodeUrl;
+	}
+
+	public String getJsapiTicketUrl() {
+		return jsapiTicketUrl;
+	}
+
+	public void setJsapiTicketUrl(String jsapiTicketUrl) {
+		this.jsapiTicketUrl = jsapiTicketUrl;
 	}
 
 }

@@ -17,6 +17,7 @@ import com.makemoney.wechat.config.WechatConfig;
 import com.makemoney.wechat.exception.WeiXinException;
 import com.makemoney.wechat.model.AccessToken;
 import com.makemoney.wechat.model.AccessTokenOAuth;
+import com.makemoney.wechat.model.JSApiTicket;
 import com.makemoney.wechat.model.UserInfo;
 
 /**
@@ -37,10 +38,13 @@ public class WeiXinHttpsHelper {
 	@Resource
 	private WechatConfig wechatConfig;
 
+	/**
+	 * 根据AppID和AppSecret获取全局的AccessToken
+	 */
 	public AccessToken getAccessToken() throws Exception {
 		logger.info("根据AppID和AppSecret获取access token");
 
-		// 获取access token
+		// 处理请求获取access token地址
 		String accessTokenUrl = wechatConfig.getAccessTokenUrl();
 		accessTokenUrl = accessTokenUrl.replace(WechatRequestParam.APPID, wechatConfig.getAppID());
 		accessTokenUrl = accessTokenUrl.replace(WechatRequestParam.APP_SECRET,
@@ -48,6 +52,7 @@ public class WeiXinHttpsHelper {
 
 		logger.info("请求的URL地址 accessTokenUrl={}", accessTokenUrl);
 
+		// 发送GET请求并处理返回数据
 		JSONObject responseJSON = HttpsClient.httpsRequest(accessTokenUrl, REQUEST_METHOD_GET, null);
 		if (null == responseJSON) {
 			logger.info("请求的返回信息为空");
@@ -57,10 +62,11 @@ public class WeiXinHttpsHelper {
 		logger.info("请求的返回信息 responseJSONObject={}", responseJSON);
 
 		String errcode = responseJSON.getString(WechatResponseParam.ERRCODE);
-		if (!StringUtils.isEmpty(errcode)) {
+		if (!StringUtils.isEmpty(errcode)) { // 处理错误返回码与返回信息
 			throw new WeiXinException(errcode, WeiXinReponseCode.getMessage(errcode));
 		}
 		
+		// 封装返回的数据
 		AccessToken accessToken = new AccessToken();
 		accessToken.setAccessToken(responseJSON.getString(WechatResponseParam.ACCESS_TOKEN));
 		accessToken.setExpiresIn(responseJSON.getString(WechatResponseParam.EXPIRES_IN));
@@ -68,6 +74,9 @@ public class WeiXinHttpsHelper {
 		return accessToken;
 	}
 
+	/**
+	 * 根据Code获取授权登录的AccessToken
+	 */
 	public AccessTokenOAuth getAccessTokenOAuth(String code) throws Exception {
 		if (StringUtils.isEmpty(code)) {
 			return null;
@@ -106,10 +115,16 @@ public class WeiXinHttpsHelper {
 		return accessTokenOAuth;
 	}
 	
+	/**
+	 * 刷新token, 目前先不实现
+	 */
 	public Map<String, Object> refreshToken(String refreshToken) throws Exception {
 		return null;
 	}
 	
+	/**
+	 * 获取用户详细信息
+	 */
 	public UserInfo getUserInfo(String accessToken, String openid) throws Exception {
 		if (StringUtils.isEmpty(accessToken) ||  StringUtils.isEmpty(openid)) {
 			return null;
@@ -147,4 +162,41 @@ public class WeiXinHttpsHelper {
 		return userInfo;
 	}
 
+	/**
+	 * 获取用于生成JS-SDK权限验证的签名
+	 */
+	public JSApiTicket getJSApiTicket(String accessToken) throws Exception {
+		if (StringUtils.isEmpty(accessToken)) {
+			return null;
+		}
+		
+		logger.info("用于生成JS-SDK权限验证的签名 accessToken={}", accessToken);
+
+		String jsapiTicketUrl = wechatConfig.getJsapiTicketUrl();
+		jsapiTicketUrl = jsapiTicketUrl.replace(WechatRequestParam.APPID, accessToken);
+
+		logger.info("请求的URL地址 accessTokenUrl={}", jsapiTicketUrl);
+		
+		JSONObject responseJSON = HttpsClient.httpsRequest(jsapiTicketUrl, REQUEST_METHOD_GET, null);
+		if (null == responseJSON) {
+			logger.info("请求的返回信息为空");
+			return null;
+		}
+		
+		logger.info("请求的返回信息 responseJSONObject={}", responseJSON);
+		
+		String errcode = responseJSON.getString(WechatResponseParam.ERRCODE);
+		if (!WeiXinReponseCode.REQUEST_SUCCESS.equals(errcode)) {
+			throw new WeiXinException(errcode, WeiXinReponseCode.getMessage(errcode));
+		}
+		
+		JSApiTicket jsApiTicket = new JSApiTicket();
+		jsApiTicket.setTicket(responseJSON.getString(WechatResponseParam.TICKET));
+		jsApiTicket.setExpiresIn(responseJSON.getString(WechatResponseParam.EXPIRES_IN));
+
+		return jsApiTicket;
+	}
+ 
+	// TODO 分享接口加签实现
+	
 }
