@@ -71,4 +71,10 @@ public class WechatResponseParam {
 	/** 用户特权信息，json 数组，如微信沃卡用户为（chinaunicom） */
 	public static String PRIVILEGE = "privilege";
 	
+	/** 消息类型 */
+	public static String MSG_TYPE = "MsgType";
+	
+	/** 事件类型 */
+	public static String EVENT = "Event";
+	
 }

@@ -37,7 +37,15 @@
     </div>
   </div>
   
-  <div style="text-align: center;"><img alt="" src="<%=request.getContextPath()%>/assets/images/aboutus2.png"></div>
+  <div style="background-color: #CA4E4E; margin-top: 0px; color: #FFFFFF;">  
+    <div class="container" style="width: 100%; text-align: center; padding: 20px;">
+      <div style="background-color: #FFFFFF; border-radius: 6px; border: 2px solid #FFFFFF; margin: 0 auto; width: 100px;">
+        <button type="submit" class="btn btn-mkm-answer btn-lg btn-block">我也要赚</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container" style="text-align: center;"><img style="width: 100%;" alt="" src="<%=request.getContextPath()%>/assets/images/aboutus2.png"></div>
   
   <hr>
   

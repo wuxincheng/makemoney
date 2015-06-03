@@ -25,9 +25,6 @@ public class WechatConfig {
 	@Value("#{wechatConfigSettings.encodingAESKey}")
 	private String encodingAESKey;
 
-	@Value("#{wechatConfigSettings.accessToken}")
-	private String accessToken;
-
 	@Value("#{wechatConfigSettings.accessTokenUrl}")
 	private String accessTokenUrl;
 
@@ -73,14 +70,6 @@ public class WechatConfig {
 
 	public void setEncodingAESKey(String encodingAESKey) {
 		this.encodingAESKey = encodingAESKey;
-	}
-
-	public String getAccessToken() {
-		return accessToken;
-	}
-
-	public void setAccessToken(String accessToken) {
-		this.accessToken = accessToken;
 	}
 
 	public String getAccessTokenUrl() {
