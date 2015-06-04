@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.makemoney.wechat.WechatResponseParam;
-import com.makemoney.wechat.exception.WeiXinException;
-import com.makemoney.wechat.util.MessageUtil;
-import com.makemoney.wechat.util.SignUtil;
-import com.makemoney.wechat.util.WeiXinConstants;
+import com.makemoney.wechat.exception.WechatException;
+import com.makemoney.wechat.util.WechatConstants;
+import com.makemoney.wechat.util.WechatMessageHelper;
+import com.makemoney.wechat.util.WechatSignHelper;
 
 /**
  * 接入微信公众号平台
@@ -29,9 +30,12 @@ import com.makemoney.wechat.util.WeiXinConstants;
  */
 @Controller
 @RequestMapping("/weixin/notice")
-public class WeixinController {
-	private static Logger logger = LoggerFactory.getLogger(WeixinController.class);
+public class WechatController {
+	private static Logger logger = LoggerFactory.getLogger(WechatController.class);
 
+	@Resource
+	private WechatSignHelper wechatSignHelper;
+	
 	/**
 	 * POST请求
 	 */
@@ -41,7 +45,7 @@ public class WeixinController {
 
 		Map<String, String> requestMap = null;
 		try {
-			requestMap = MessageUtil.parseXml(request);
+			requestMap = WechatMessageHelper.parseXml(request);
 			logger.info("接收微信数据 requestMap={}", requestMap);
 		} catch (Exception ex) {
 			logger.error("解析微信数据异常", ex);
@@ -49,7 +53,7 @@ public class WeixinController {
 			
 		try {
 			if (null == requestMap || requestMap.size() < 1) {
-				throw new WeiXinException(WeiXinException.ILLEGAL_PATTERN, "接收到数据为空");
+				throw new WechatException(WechatException.ILLEGAL_PATTERN, "接收到数据为空");
 			}
 
 			// 消息类型
@@ -58,25 +62,25 @@ public class WeixinController {
 			String event = requestMap.get(WechatResponseParam.EVENT);
 		
 			if (StringUtils.isEmpty(msgType)) {
-				throw new WeiXinException(WeiXinException.ILLEGAL_PATTERN, "消息类型msgType为空");
+				throw new WechatException(WechatException.ILLEGAL_PATTERN, "消息类型msgType为空");
 			}
 			
 			if (StringUtils.isEmpty(event)) {
-				throw new WeiXinException(WeiXinException.ILLEGAL_PATTERN, "事件类型event为空");
+				throw new WechatException(WechatException.ILLEGAL_PATTERN, "事件类型event为空");
 			}
 			
-			if (WeiXinConstants.MSG_TYPE_EVENT.equals(event)) {
-				if (WeiXinConstants.EVENT_SUBSCRIBE.equals(msgType)) {
+			if (WechatConstants.MSG_TYPE_EVENT.equals(event)) {
+				if (WechatConstants.EVENT_SUBSCRIBE.equals(msgType)) {
 
 				}
 
-				if (WeiXinConstants.EVENT_UNSUBSCRIBE.equals(msgType)) {
+				if (WechatConstants.EVENT_UNSUBSCRIBE.equals(msgType)) {
 
 				}
 			} else {
-				throw new WeiXinException(WeiXinException.ILLEGAL_PATTERN, "未知消息类型");
+				throw new WechatException(WechatException.ILLEGAL_PATTERN, "未知消息类型");
 			}
-		} catch (WeiXinException e) {
+		} catch (WechatException e) {
 			logger.error(e.getCode() + ": " + e.getMessage(), e);
 		}
 	}
@@ -97,7 +101,7 @@ public class WeixinController {
 			logger.info("加密签名 signature={}", signature);
 
 			if (StringUtils.isEmpty(signature)) {
-				throw new WeiXinException(WeiXinException.ILLEGAL_PATTERN, "加密签名signature为空");
+				throw new WechatException(WechatException.ILLEGAL_PATTERN, "加密签名signature为空");
 			}
 
 			// 时间戳
@@ -105,7 +109,7 @@ public class WeixinController {
 			logger.info("时间戳 timestamp={}", timestamp);
 
 			if (StringUtils.isEmpty(timestamp)) {
-				throw new WeiXinException(WeiXinException.ILLEGAL_PATTERN, "时间戳timestamp为空");
+				throw new WechatException(WechatException.ILLEGAL_PATTERN, "时间戳timestamp为空");
 			}
 
 			// 随机数
@@ -113,7 +117,7 @@ public class WeixinController {
 			logger.info("随机数 nonce={}", nonce);
 
 			if (StringUtils.isEmpty(nonce)) {
-				throw new WeiXinException(WeiXinException.ILLEGAL_PATTERN, "随机数nonce为空");
+				throw new WechatException(WechatException.ILLEGAL_PATTERN, "随机数nonce为空");
 			}
 
 			// 随机字符串
@@ -123,13 +127,13 @@ public class WeixinController {
 			// 不校验echostr
 
 			// 原样返回echostr参数内容
-			if (SignUtil.checkSignature(signature, timestamp, nonce)) {
+			if (wechatSignHelper.checkSignature(signature, timestamp, nonce)) {
 				logger.info("微信公众平台接入成功");
 				printResponse(response, echostr);
 			} else {
 				logger.error("微信公众平台接入失败");
 			}
-		} catch (WeiXinException e) {
+		} catch (WechatException e) {
 			respCode = e.getCode();
 			respMsg = e.getMessage();
 			logger.error("处理微信请求数据异常", e);
@@ -140,7 +144,7 @@ public class WeixinController {
 
 			printResponse(response, responseData);
 		} catch (Exception ex) {
-			respCode = WeiXinException.SYSTEM_ERROR;
+			respCode = WechatException.SYSTEM_ERROR;
 			respMsg = "系统异常";
 			logger.error("系统异常", ex);
 

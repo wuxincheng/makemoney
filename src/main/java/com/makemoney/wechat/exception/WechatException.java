@@ -1,6 +1,6 @@
 package com.makemoney.wechat.exception;
 
-public class WeiXinException extends Exception {
+public class WechatException extends Exception {
 
 	private static final long serialVersionUID = 566839376511643217L;
 
@@ -12,28 +12,28 @@ public class WeiXinException extends Exception {
 	
 	private String code = null;
 
-	public WeiXinException() {
+	public WechatException() {
 	}
 	
-	public WeiXinException(Throwable cause) {
+	public WechatException(Throwable cause) {
 		super(cause);
 	}
 
-	public WeiXinException(String message, Throwable cause) {
+	public WechatException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
-	public WeiXinException(String code, String message, Throwable cause) {
+	public WechatException(String code, String message, Throwable cause) {
 		super(message, cause);
 		this.code = code;
 	}
 
-	public WeiXinException(String code, String message) {
+	public WechatException(String code, String message) {
 		super(message);
 		this.code = code;
 	}
 
-	public WeiXinException(String message) {
+	public WechatException(String message) {
 		super(message);
 	}
 	

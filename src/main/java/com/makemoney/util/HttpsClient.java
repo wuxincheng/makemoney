@@ -1,4 +1,4 @@
-package com.makemoney.wechat.util;
+package com.makemoney.util;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -15,6 +15,8 @@ import javax.net.ssl.TrustManager;
 import net.sf.json.JSONObject;
 
 import org.apache.log4j.Logger;
+
+import com.makemoney.wechat.util.WechatX509TrustManager;
 
 public class HttpsClient {
 
@@ -36,7 +38,7 @@ public class HttpsClient {
 		StringBuffer buffer = new StringBuffer();
 		try {
 			// 创建SSLContext对象，并使用我们指定的信任管理器初始化
-			TrustManager[] tm = { new MyX509TrustManager() };
+			TrustManager[] tm = { new WechatX509TrustManager() };
 			SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
 			sslContext.init(null, tm, new java.security.SecureRandom());
 			// 从上述SSLContext对象中得到SSLSocketFactory对象

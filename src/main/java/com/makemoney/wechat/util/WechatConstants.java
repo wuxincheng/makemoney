@@ -1,9 +1,9 @@
 package com.makemoney.wechat.util;
 
-public class WeiXinConstants {
+public class WechatConstants {
 
 	/** Token(令牌) */
-	public static final String TOKEN = "insidetiger";
+	// public static final String TOKEN = "insidetiger";
 	
 	/** 应用授权作用域: 不弹出授权页面，直接跳转 */
 	public static final String AUTH_SCOPE_BASE = "snsapi_base";

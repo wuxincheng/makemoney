@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,7 +18,21 @@ import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
+/**
+ * String工具类
+ *
+ * @author wuxincheng
+ * @date 2015年6月4日 下午3:26:26
+ * @version V1.0
+ */
 public class StringUtil {
+	
+	/**
+	 * 获取随机字符串
+	 */
+	public static String getNonceStr() {
+        return UUID.randomUUID().toString().replaceAll("-", "");
+    }
 
 	/**
 	 * 截取指定长度的字符串, 如果长度不够, 直接返回

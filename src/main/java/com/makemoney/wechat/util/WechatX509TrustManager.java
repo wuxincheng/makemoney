@@ -8,7 +8,7 @@ import javax.net.ssl.X509TrustManager;
 /**
  * 证书信任管理器（用于https请求）
  */
-public class MyX509TrustManager implements X509TrustManager {
+public class WechatX509TrustManager implements X509TrustManager {
 
 	public void checkClientTrusted(X509Certificate[] chain, String authType)
 			throws CertificateException {

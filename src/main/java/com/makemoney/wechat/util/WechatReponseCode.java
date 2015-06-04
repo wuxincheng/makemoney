@@ -10,7 +10,7 @@ import java.util.Map;
  * @date 2015年6月2日 下午3:43:06
  * @version V1.0
  */
-public class WeiXinReponseCode {
+public class WechatReponseCode {
 
 	public static final String SYSTEM_BUSY = "-1";
 	public static final String REQUEST_SUCCESS = "0";

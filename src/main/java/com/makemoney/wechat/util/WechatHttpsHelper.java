@@ -11,10 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import com.makemoney.util.HttpsClient;
 import com.makemoney.wechat.WechatRequestParam;
 import com.makemoney.wechat.WechatResponseParam;
 import com.makemoney.wechat.config.WechatConfig;
-import com.makemoney.wechat.exception.WeiXinException;
+import com.makemoney.wechat.exception.WechatException;
 import com.makemoney.wechat.model.AccessToken;
 import com.makemoney.wechat.model.AccessTokenOAuth;
 import com.makemoney.wechat.model.JSApiTicket;
@@ -28,9 +29,9 @@ import com.makemoney.wechat.model.UserInfo;
  * @version V1.0
  */
 @Component
-public class WeiXinHttpsHelper {
+public class WechatHttpsHelper {
 
-	private static Logger logger = LoggerFactory.getLogger(WeiXinHttpsHelper.class);
+	private static Logger logger = LoggerFactory.getLogger(WechatHttpsHelper.class);
 
 	// private static final String REQUEST_METHOD_POST = "POST";
 	private static final String REQUEST_METHOD_GET = "GET";
@@ -41,7 +42,7 @@ public class WeiXinHttpsHelper {
 	/**
 	 * 根据AppID和AppSecret获取全局的AccessToken
 	 */
-	public AccessToken getAccessToken() throws Exception {
+	public AccessToken getAccessTokenModel() throws Exception {
 		logger.info("根据AppID和AppSecret获取access token");
 
 		// 处理请求获取access token地址
@@ -63,7 +64,7 @@ public class WeiXinHttpsHelper {
 
 		String errcode = responseJSON.getString(WechatResponseParam.ERRCODE);
 		if (!StringUtils.isEmpty(errcode)) { // 处理错误返回码与返回信息
-			throw new WeiXinException(errcode, WeiXinReponseCode.getMessage(errcode));
+			throw new WechatException(errcode, WechatReponseCode.getMessage(errcode));
 		}
 		
 		// 封装返回的数据
@@ -77,7 +78,7 @@ public class WeiXinHttpsHelper {
 	/**
 	 * 根据Code获取授权登录的AccessToken
 	 */
-	public AccessTokenOAuth getAccessTokenOAuth(String code) throws Exception {
+	public AccessTokenOAuth getAccessTokenOAuthModel(String code) throws Exception {
 		if (StringUtils.isEmpty(code)) {
 			return null;
 		}
@@ -102,7 +103,7 @@ public class WeiXinHttpsHelper {
 		
 		String errcode = responseJSON.getString(WechatResponseParam.ERRCODE);
 		if (!StringUtils.isEmpty(errcode)) {
-			throw new WeiXinException(errcode, WeiXinReponseCode.getMessage(errcode));
+			throw new WechatException(errcode, WechatReponseCode.getMessage(errcode));
 		}
 		
 		AccessTokenOAuth accessTokenOAuth = new AccessTokenOAuth();
@@ -125,7 +126,7 @@ public class WeiXinHttpsHelper {
 	/**
 	 * 获取用户详细信息
 	 */
-	public UserInfo getUserInfo(String accessToken, String openid) throws Exception {
+	public UserInfo getUserInfoModel(String accessToken, String openid) throws Exception {
 		if (StringUtils.isEmpty(accessToken) ||  StringUtils.isEmpty(openid)) {
 			return null;
 		}
@@ -146,7 +147,7 @@ public class WeiXinHttpsHelper {
 		
 		String errcode = responseJSON.getString(WechatResponseParam.ERRCODE);
 		if (!StringUtils.isEmpty(errcode)) {
-			throw new WeiXinException(errcode, WeiXinReponseCode.getMessage(errcode));
+			throw new WechatException(errcode, WechatReponseCode.getMessage(errcode));
 		}
 		
 		UserInfo userInfo = new UserInfo();
@@ -186,8 +187,8 @@ public class WeiXinHttpsHelper {
 		logger.info("请求的返回信息 responseJSONObject={}", responseJSON);
 		
 		String errcode = responseJSON.getString(WechatResponseParam.ERRCODE);
-		if (!WeiXinReponseCode.REQUEST_SUCCESS.equals(errcode)) {
-			throw new WeiXinException(errcode, WeiXinReponseCode.getMessage(errcode));
+		if (!WechatReponseCode.REQUEST_SUCCESS.equals(errcode)) {
+			throw new WechatException(errcode, WechatReponseCode.getMessage(errcode));
 		}
 		
 		JSApiTicket jsApiTicket = new JSApiTicket();

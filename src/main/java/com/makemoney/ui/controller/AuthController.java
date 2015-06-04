@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.makemoney.wechat.WechatRequestParam;
 import com.makemoney.wechat.WechatResponseParam;
 import com.makemoney.wechat.config.WechatConfig;
-import com.makemoney.wechat.util.WeiXinConstants;
+import com.makemoney.wechat.util.WechatConstants;
 
 /**
  * 赚了没
@@ -34,26 +34,26 @@ public class AuthController {
 		String authUrl = wechatConfig.getAuthApiUrl();
 		authUrl = authUrl.replace(WechatRequestParam.APPID, wechatConfig.getAppID())
 				.replace(WechatRequestParam.REDIRECT_URI, wechatConfig.getRedirectUri())
-				.replace(WechatRequestParam.SCOPE, WeiXinConstants.AUTH_SCOPE_USERINFO);
+				.replace(WechatRequestParam.SCOPE, WechatConstants.AUTH_SCOPE_USERINFO);
 
 		model.addAttribute("authUrl", authUrl);
 
 		return "auth";
 	}
-	
+
 	@RequestMapping(value = "/check", method = RequestMethod.GET)
-	public void receviewAuthCode(HttpServletRequest request, Model model){
+	public void receviewAuthCode(HttpServletRequest request, Model model) {
 		String code = request.getParameter(WechatResponseParam.CODE);
 		String state = request.getParameter(WechatResponseParam.STATE);
-		
+
 		if (StringUtils.isEmpty(state)) {
-			
+
 		}
-		
+
 		if (StringUtils.isEmpty(code)) {
 			// 可以使用Code用作唯一标识
 		}
-		
+
 		// TODO 保存
 	}
 

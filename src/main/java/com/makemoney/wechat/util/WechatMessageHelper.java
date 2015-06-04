@@ -25,7 +25,7 @@ import com.thoughtworks.xstream.io.xml.XppDriver;
  * @date 2015年6月3日 下午2:32:39
  * @version V1.0
  */
-public class MessageUtil {
+public class WechatMessageHelper {
 
 	/**
 	 * 解析微信发来的请求（XML）

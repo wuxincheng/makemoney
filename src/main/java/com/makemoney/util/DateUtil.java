@@ -20,6 +20,13 @@ import org.springframework.util.StringUtils;
 public class DateUtil {
 	
 	/**
+	 * 获取当前时间戳
+	 */
+	public static String getCurrentTimestamp() {
+        return Long.toString(System.currentTimeMillis() / 1000);
+    }
+	
+	/**
      * 把时间字符串转成指定格式的时间
      * 
      * @param datePattern 转换格式
