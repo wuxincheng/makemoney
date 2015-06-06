@@ -26,11 +26,6 @@ public class WechatSignHelper {
 
 	/**
 	 * 验证签名串
-	 * 
-	 * @param signature
-	 * @param timestamp
-	 * @param nonce
-	 * @return
 	 */
 	public boolean checkSignature(String signature, String timestamp, String nonce) {
 
@@ -41,6 +36,9 @@ public class WechatSignHelper {
 		return sign != null ? signature.equals(sign) : false;
 	}
 	
+	/**
+	 * 组拼分享签名串
+	 */
 	public String getShareSignature(String noncestr, String ticket, String timestamp, String url){
 		// 封装待签名Map
 		Map<String, String> signParam = new HashMap<String, String>();
